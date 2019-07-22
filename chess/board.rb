@@ -6,6 +6,7 @@ require_relative "null"
 require_relative "pawn"
 require_relative "queen"
 require_relative "rook"
+require_relative "cursor"
 
 
 class Board
@@ -20,8 +21,10 @@ class Board
         puts
         (0...8).each do |i|
             print "#{i} "
+            
+            
             (0...8).each do |j|
-                print "#{@board[i][j]}"
+                print "#{@board[i][j]} "
             end
             puts
         end
@@ -96,3 +99,5 @@ puts board[[0,2]]
 
 board.move_piece([0,1],[2,1])
 board.render
+c = Cursor.new([0,0],board)
+c.get_input
