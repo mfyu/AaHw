@@ -13,9 +13,12 @@ class Board
     def initialize
         @board = Array.new(8){Array.new(8)}
         populate
+        @cursor = Cursor.new([0,0],@board)
+
     end
 
     def render
+        system("ctl")
         print "  "
         (0...8).each {|i| print "#{i} "}
         puts
@@ -89,15 +92,15 @@ class Board
         self[end_pos] = piece
     end
 
+    def play
+        while true
+            render
+            @cursor.get_input
+        end
+    end
+
 
 end
 
 board = Board.new
-board.render
-
-puts board[[0,2]]
-
-board.move_piece([0,1],[2,1])
-board.render
-c = Cursor.new([0,0],board)
-c.get_input
+board.play
