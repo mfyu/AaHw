@@ -37,13 +37,22 @@ class IntSet
   end
 
   def insert(num)
+    @store[num%20]<<num if !@store[num%20].nil? && !include?(num)
   end
 
   def remove(num)
+    @store.each do |arr|
+      if arr.include?(num)
+        arr.delete(num)
+      end
+    end
   end
 
   def include?(num)
+    @store.any? {|arr| arr.include?(num)}
   end
+
+  attr_reader :store
 
   private
 
@@ -65,12 +74,27 @@ class ResizingIntSet
   end
 
   def insert(num)
+    if @count == num_buckets
+      resize!
+    end
+    if !@store[num%num_buckets].nil? && !include?(num)
+      @store[num%num_buckets]<<num 
+      @count += 1
+    end
   end
 
   def remove(num)
+    @store.each do |arr|
+      if arr.include?(num)
+        arr.delete(num)
+        @count -= 1
+      end
+    end  
   end
 
   def include?(num)
+    @store.any? {|arr| arr.include?(num)}
+
   end
 
   private
@@ -84,5 +108,13 @@ class ResizingIntSet
   end
 
   def resize!
+    new_store = Array.new(num_buckets*2) { Array.new }
+    @store.each do |arr|
+      arr.each do |el|
+        new_store[el % (2*num_buckets)]<<el
+      end
+    end
+    @store = new_store
   end
 end
+
