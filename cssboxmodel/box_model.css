@@ -1,0 +1,17 @@
+div {
+height:200px;
+width:200px;
+background-color: blue;
+}
+
+#first-div {
+  background-color: #39cccc;
+}
+
+#second-div {
+  background-color: #ff4136;
+}
+
+p {
+  background-color: #7fdbff;
+}
