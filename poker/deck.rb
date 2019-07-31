@@ -25,7 +25,4 @@ class Deck
     end
 end
 
-d = Deck.new
-puts d.deck
 
-c = Card.new("2", "♦")
