@@ -110,13 +110,11 @@ class LinkedList
   end
 
   def each
-    out = []
     current_node = @head.next
     while current_node.val
-      out<<current_node
+      yield current_node
       current_node = current_node.next
     end
-    out
   end
 
   # uncomment when you have `each` working and `Enumerable` included
@@ -125,15 +123,3 @@ class LinkedList
   # end
 end
 
-list = LinkedList.new
-p list.head
-list.append(:first, 1)
-list.append("two", 2)
-list.append(:first, 3)
-
-puts list.head.next
-puts list.tail.prev.prev
-
-puts list.get(:first)
-
-print list.each
