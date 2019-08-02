@@ -1,7 +1,7 @@
 require_relative 'p04_linked_list'
 
 class HashMap
-  attr_accessor :count
+  attr_accessor :count, :store
 
   include Enumerable
 
@@ -43,29 +43,27 @@ class HashMap
     end
   end
 
-  def [](key)
-    @store[key.hash%num_buckets].get(key)
-  end
+ 
 
-  def []=(key, val)
-    if @count == num_buckets
-      resize!
-    end
-    if include?(key)
-      @store[key.hash%num_buckets].update(key, val)
-    else 
-      @store[key.hash%num_buckets].append(key, val)
-      @count += 1
-    end
-  end
+  # def []=(key, val)
+  #   if @count == num_buckets
+  #     resize!
+  #   end
+  #   if include?(key)
+  #     @store[key.hash%num_buckets].update(key, val)
+  #   else 
+  #     @store[key.hash%num_buckets].append(key, val)
+  #     @count += 1
+  #   end
+  # end
 
   # uncomment when you have Enumerable included
-  # def to_s
-  #   pairs = inject([]) do |strs, (k, v)|
-  #     strs << "#{k.to_s} => #{v.to_s}"
-  #   end
-  #   "{\n" + pairs.join(",\n") + "\n}"
-  # end
+  def to_s
+    pairs = inject([]) do |strs, (k, v)|
+      strs << "#{k.to_s} => #{v.to_s}"
+    end
+    "{\n" + pairs.join(",\n") + "\n}"
+  end
 
   alias_method :[], :get
   alias_method :[]=, :set

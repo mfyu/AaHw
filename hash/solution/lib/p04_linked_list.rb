@@ -9,9 +9,11 @@ class Node
     @prev = nil
   end
 
-  def to_s
-    "#{self.key}: #{self.val}"
-  end
+  # def to_s
+    
+  #   #"#{self.key}: #{self.val}"
+  #   "poop"
+  # end
 
   def remove
     self.prev.next = self.next if self.prev
@@ -88,7 +90,6 @@ class LinkedList
         return node.val
       end
     end
-
     nil
   end
 
@@ -101,6 +102,7 @@ class LinkedList
   end
 
   def to_s
+    
     inject([]) { |acc, node| acc << "[#{node.key}, #{node.val}]" }.join(', ')
   end
 end
