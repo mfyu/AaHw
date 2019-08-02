@@ -1,4 +1,8 @@
 source "https://rubygems.org"
 
 gem 'rspec', "~> 3.4.0"
+<<<<<<< HEAD
 gem 'byebug'
+=======
+#gem 'byebug'
+>>>>>>> 718e5f1c3084e13920a59f1aa789ea778baff25e

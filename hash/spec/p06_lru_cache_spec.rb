@@ -3,7 +3,7 @@ require 'p06_lru_cache'
 
 describe LRUCache do
   describe "#get" do
-    let(:prc) { double }
+    let(:prc) { Proc.new{|n|n*n} }
 
     it "should call the given proc for uncached inputs" do
       lru = LRUCache.new(3, prc)
@@ -28,8 +28,9 @@ describe LRUCache do
     end
 
     it "should eject least recently used items out of cache" do
+      
       lru = LRUCache.new(3, prc)
-
+      
       expect(prc).to receive(:call).exactly(2).times.with(0)
       1.upto(3) do |i|
         expect(prc).to receive(:call).exactly(1).times.with(i)

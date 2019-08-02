@@ -9,9 +9,17 @@ class Node
     @prev = nil
   end
 
+<<<<<<< HEAD
   def to_s
     "#{self.key}: #{self.val}"
   end
+=======
+  # def to_s
+    
+  #   #"#{self.key}: #{self.val}"
+  #   "poop"
+  # end
+>>>>>>> 718e5f1c3084e13920a59f1aa789ea778baff25e
 
   def remove
     self.prev.next = self.next if self.prev
@@ -88,7 +96,6 @@ class LinkedList
         return node.val
       end
     end
-
     nil
   end
 

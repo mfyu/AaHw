@@ -1,7 +1,10 @@
 GEM
   remote: https://rubygems.org/
   specs:
+<<<<<<< HEAD
     byebug (10.0.2)
+=======
+>>>>>>> 718e5f1c3084e13920a59f1aa789ea778baff25e
     diff-lcs (1.3)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
@@ -19,9 +22,15 @@ GEM
 
 PLATFORMS
   ruby
+<<<<<<< HEAD
 
 DEPENDENCIES
   byebug
+=======
+  x64-mingw32
+
+DEPENDENCIES
+>>>>>>> 718e5f1c3084e13920a59f1aa789ea778baff25e
   rspec (~> 3.4.0)
 
 BUNDLED WITH
