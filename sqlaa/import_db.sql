@@ -8,6 +8,10 @@ DROP TABLE IF EXISTS users;
 
 PRAGMA foreign_keys = ON;
 
+----------------------------------------------------------- 
+--USERS------------------------------------------------
+-----------------------------------------------------------
+
 CREATE TABLE users (
   id INTEGER PRIMARY KEY,
   fname VARCHAR(255) NOT NULL,
@@ -18,6 +22,10 @@ INSERT INTO
   users (fname, lname)
 VALUES
   ("Ned", "Ruggeri"), ("Kush", "Patel"), ("Earl", "Cat");
+
+----------------------------------------------------------- 
+--QUESTIONS------------------------------------------------
+-----------------------------------------------------------
 
 CREATE TABLE questions (
   id INTEGER PRIMARY KEY,
@@ -49,11 +57,24 @@ WHERE
 INSERT INTO
   questions (title, body, author_id)
 SELECT
+  "Kush Question", "DANNK DANK DANK", users.id
+FROM
+  users
+WHERE
+  users.fname = "Kush" AND users.lname = "Patel";
+
+INSERT INTO
+  questions (title, body, author_id)
+SELECT
   "Earl Question", "MEOW MEOW MEOW", users.id
 FROM
   users
 WHERE
   users.fname = "Earl" AND users.lname = "Cat";
+
+----------------------------------------------------------- 
+--QUESTION FOLLOWS------------------------------------------------
+-----------------------------------------------------------
 
 CREATE TABLE question_follows (
   id INTEGER PRIMARY KEY,
@@ -71,8 +92,16 @@ VALUES
   (SELECT id FROM questions WHERE title = "Earl Question")),
 
   ((SELECT id FROM users WHERE fname = "Kush" AND lname = "Patel"),
-  (SELECT id FROM questions WHERE title = "Earl Question")
-);
+  (SELECT id FROM questions WHERE title = "Earl Question")),
+
+  ((SELECT id FROM users WHERE fname = "Kush" AND lname = "Patel"),
+  (SELECT id FROM questions WHERE title = "Kush Question")),
+  (2,3), (3,4),(1,3)
+;
+
+
+------replies------------------
+
 
 CREATE TABLE replies (
   id INTEGER PRIMARY KEY,
@@ -105,6 +134,10 @@ VALUES
   "I think he said MEOW MEOW MEOW."
 );
 
+----------------------------------------------------------- 
+--QUESTION LIKES------------------------------------------------
+-----------------------------------------------------------
+
 CREATE TABLE question_likes (
   id INTEGER PRIMARY KEY,
   user_id INTEGER NOT NULL,
@@ -115,4 +148,4 @@ CREATE TABLE question_likes (
 );
 
 INSERT INTO question_likes (user_id, question_id) VALUES (1, 1);
-INSERT INTO question_likes (user_id, question_id) VALUES (1, 2);
+INSERT INTO question_likes (user_id, question_id) VALUES (1, 2), (2,2), (3,2), (3,3),(1,3);
