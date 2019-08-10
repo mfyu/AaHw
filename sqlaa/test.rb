@@ -12,3 +12,4 @@ q = Question.find_by_id(5)
 
 u.lname = "Yu"
 u.save
+print u
