@@ -1,0 +1,19 @@
+html, body, header, nav, aside, section, ol, ul, li, h2,h1,img,a,p, figure{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+}
+
+ol,ul{
+    list-style: cross-fade();
+}
+
+
+body{
+    line-height: 1.5;
+}
+
+img{
+    width: inherit;
+}
