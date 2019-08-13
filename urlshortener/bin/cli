@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+class CLI
+    def prompt_email
+        puts 'Enter email: '
+        email = gets.chomp
+        @current_user = User.find_by(email: email)
+
+        if @current_user.nil?
+            raise 'That user doesn\'t exist'
+        end
+    end
+
+    def create_url
+        puts 'Type long URL: '
+        long_url = gets.chomp
+        shortened_url = ShortenedUrl.create_url(@current_user, long_url)
+
+        puts "Short url is #{shortened_url.short_url}"
+    end
+
+    def visit_url
+        puts 'Type shortened URL: '
+        short_url = gets.chomp
+
+        shortened_url = ShortenedUrl.find_by(short_url: short_url)
+        raise 'no such url found!' if shortened_url.nil?
+        puts shortened_url.long_url
+        Visit.record_visit!(@current_user, shortened_url)
+        Launchy.open(shortened_url.long_url)
+    end
+
+end
+
+cli = CLI.new
+
+cli.prompt_email
+cli.visit_url

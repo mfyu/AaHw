@@ -27,5 +27,18 @@ class ShortenedUrl < ApplicationRecord
     belongs_to(:submitter, foreign_key: :user_id, primary_key: :id, class_name: :User)
     has_many(:visits,class_name: :Visit, foreign_key: :shortened_url_id, primary_key: :id)
 
-    has_many :visitors, through: :visits, source: :visitors
+    has_many :visitors, ->{distinct},through: :visits, source: :visitor
+
+    def num_clicks
+        visits.count
+    end
+
+    def num_uniques
+        #visits.where('created_at > ?',10.minutes.ago).select('user_id').distinct.count
+        #visitors.distinct.count
+        visitors.count
+        
+    end
+
+    has_many(:tag_topics, class_name: :TagTopic, foreign_key: :shortened_url_id, primary_key: :id)
 end
