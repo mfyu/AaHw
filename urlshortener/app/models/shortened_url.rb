@@ -40,5 +40,7 @@ class ShortenedUrl < ApplicationRecord
         
     end
 
-    has_many(:tag_topics, class_name: :TagTopic, foreign_key: :shortened_url_id, primary_key: :id)
+    #has_many(:tag_topics, class_name: :TagTopic, foreign_key: :shortened_url_id, primary_key: :id)
+    has_many(:taggings, class_name: :Tagging, foreign_key: :shortened_url_id, primary_key: :id)
+    has_many(:tag_topics, through: :taggings, source: :tag_topic)
 end
